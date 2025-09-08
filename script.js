@@ -39,13 +39,10 @@ const displayAllPlants = (plants) => {
 }
 
 //all Tree button work as reset button
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded',  ()=> {
     loadPlants()
 
-    const allTreesBtn = document.getElementById("allTrees")
-    if (allTreesBtn) {
-        allTreesBtn.addEventListener("click", function (e) {
-            e.preventDefault()
+    document.getElementById("allTrees").addEventListener("click", function (e) {
             removeActive()
             if (allTreesContainer.length > 0) {
                 displayAllPlants(allTreesContainer)
@@ -54,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 loadPlants()
             }
         })
-    }
+    
 })
 
 
