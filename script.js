@@ -1,5 +1,8 @@
 let allTreesContainer = []
 const loadPlants = () => {
+    manageSpinner(true)
+
+
     const url = `https://openapi.programming-hero.com/api/plants`
     fetch(url)
         .then(res => res.json())
@@ -7,6 +10,8 @@ const loadPlants = () => {
             allTreesContainer = data.plants
             // console.log(data)
             displayAllPlants(data.plants)
+            manageSpinner(false)
+
         })
 }
 
@@ -39,23 +44,21 @@ const displayAllPlants = (plants) => {
 }
 
 //all Tree button work as reset button
-document.addEventListener('DOMContentLoaded',  ()=> {
+document.addEventListener('DOMContentLoaded', () => {
     loadPlants()
+     loadCategories() 
 
     document.getElementById("allTrees").addEventListener("click", function (e) {
-            removeActive()
-            if (allTreesContainer.length > 0) {
-                displayAllPlants(allTreesContainer)
-            } else {
+        removeActive()
+        displayAllPlants(allTreesContainer)
 
-                loadPlants()
-            }
-        })
-    
+    })
 })
 
 
-loadPlants()
+
+
+// loadPlants()
 
 const loadCategories = () => {
     fetch(`https://openapi.programming-hero.com/api/categories`)
@@ -94,7 +97,7 @@ const displayCategories = (categories) => {
 }
 
 
-loadCategories()
+// loadCategories()
 
 // "status": true,
 // "message": "successfully fetched plant data",
@@ -144,6 +147,8 @@ const displayDetails = (plant) => {
 
 
 const categoryPlantLoader = (categoryName) => {
+    manageSpinner(true)
+
 
     fetch(`https://openapi.programming-hero.com/api/plants`)
         .then(res => res.json())
@@ -151,9 +156,24 @@ const categoryPlantLoader = (categoryName) => {
             const allPlants = data.plants
             const categoryPlants = allPlants.filter(plant => plant.category === categoryName)
             displayAllPlants(categoryPlants)
+            manageSpinner(false)
 
         })
 
+}
+
+//spiner section
+
+const manageSpinner = (status) => {
+    if (status) {
+        document.getElementById("spinner").classList.remove("hidden")
+        document.getElementById("allPlants").classList.add("hidden")
+    }
+    else {
+        document.getElementById("spinner").classList.add("hidden")
+        document.getElementById("allPlants").classList.remove("hidden")
+
+    }
 }
 
 
