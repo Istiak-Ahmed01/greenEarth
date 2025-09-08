@@ -1,3 +1,4 @@
+
 const loadPlants = () => {
     const url = `https://openapi.programming-hero.com/api/plants`
     fetch(url)
@@ -6,9 +7,8 @@ const loadPlants = () => {
             // console.log(data)
             displayAllPlants(data.plants)
         })
+    }
 
-
-}
 
 const displayAllPlants = (plants) => {
     const plantContainer = document.getElementById("allPlants")
@@ -31,6 +31,8 @@ const displayAllPlants = (plants) => {
                             Cart</button>
                     </div>`
 
+
+
         plantContainer.append(plantDiv)
     }
 }
@@ -45,6 +47,13 @@ const loadCategories = () => {
         )
 }
 
+const removeActive = () => {
+    const allbtns = document.querySelectorAll("#allCategories button")
+    allbtns.forEach(btn => btn.classList.remove("active"))
+
+}
+
+
 const displayCategories = (categories) => {
     const categoryContainer = document.getElementById("allCategories")
     categoryContainer.innerHTML = ""
@@ -53,9 +62,12 @@ const displayCategories = (categories) => {
         categoryBtn.className =
             "w-full text-left px-3 py-2 text-[1rem] font-normal text-[#1F2937] hover:bg-[#15803D] hover:text-white rounded-sm mb-2 "
         categoryBtn.textContent = category.category_name
-        categoryBtn.addEventListener("click",() =>{
+        categoryBtn.addEventListener("click", () => {
+            removeActive()
+            categoryBtn.classList.add("active")
             categoryPlantLoader(category.category_name)
         }
+
 
         )
 
@@ -63,6 +75,7 @@ const displayCategories = (categories) => {
     });
 
 }
+
 
 loadCategories()
 
@@ -114,10 +127,10 @@ const displayDetails = (plant) => {
 
 
 const categoryPlantLoader = (categoryName) => {
+
     fetch(`https://openapi.programming-hero.com/api/plants`)
-    .then(res => res.json())
-    .then(data => 
-        {
+        .then(res => res.json())
+        .then(data => {
             const allPlants = data.plants
             const categoryPlants = allPlants.filter(plant => plant.category === categoryName)
             displayAllPlants(categoryPlants)

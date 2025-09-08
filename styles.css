@@ -2,3 +2,9 @@
     font-family: Inter;
 
 }
+
+.active{
+   
+     background-color: #15803D;
+     color: white;
+}
