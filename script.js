@@ -21,11 +21,11 @@ const displayAllPlants = (plants) => {
         plantDiv.innerHTML = `   <div class="bg-white shadow-sm p-5 space-y-2 rounded-lg ">
                         <div class="h-[187px] " > <img class="h-full w-full" src=" ${plant.image}" alt="">
                         </div>
-                        <h2 class="text-[1rem] font-semibold">${plant.name}</h2>
-                        <p>${plant.description.slice(0,60)}</p>
+                        <h2 onclick="loadTreeDetails('${plant.id}')" class="text-[1rem] font-semibold">${plant.name}</h2>
+                        <p>${plant.description.slice(0, 60)}</p>
                         <div class="flex justify-between">
                             <a class="bg-[#DCFCE7] rounded-3xl w-22 text-center" href="">${plant.category}</a>
-                            <h2>${plant.price}</h2>
+                            <h2>৳${plant.price}</h2>
                         </div>
                         <button class="btn text-[16px] bg-[#15803D] text-[#fff] w-full rounded-full border-none">Add to
                             Cart</button>
@@ -60,5 +60,51 @@ const displayCategories = (categories) => {
 }
 
 loadCategories()
+
+// "status": true,
+// "message": "successfully fetched plant data",
+// "plants": {
+// "id": 1,
+// "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
+// "name": "Mango Tree",
+// "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
+// "category": "Fruit Tree",
+// "price": 500
+// }
+
+const loadTreeDetails = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+    const res = await fetch(url)
+    const details = await res.json()
+    displayDetails(details.plants)
+}
+
+const displayDetails = (plant) => {
+    const detailContainer = document.getElementById("details-container")
+    detailContainer.innerHTML = `
+        <div class="bg-white shadow-sm p-5 space-y-2 rounded-lg">
+            <div class="h-[187px]">
+                <img class="h-full w-full" src="${plant.image}" alt="">
+            </div>
+            <h2 class="text-[1rem] font-semibold">${plant.name}</h2>
+            <p>${plant.description}</p>
+            <div class="flex justify-between">
+                <a class="bg-[#DCFCE7] rounded-3xl w-22 text-center" href="">
+                    ${plant.category}
+                </a>
+                <h2>৳${plant.price}</h2>
+            </div>
+            <button class="btn bg-[#15803D] text-white w-full rounded-full border-none">
+                Add to Cart
+            </button>
+            <button onclick="document.getElementById('treeModal').close()" 
+                class="btn bg-red-500 text-white w-full rounded-full border-none mt-2">
+                Close
+            </button>
+        </div>`;
+
+
+    document.getElementById("treeModal").showModal()
+}
 
 
