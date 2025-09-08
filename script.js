@@ -1,13 +1,14 @@
-
+let allTreesContainer = []
 const loadPlants = () => {
     const url = `https://openapi.programming-hero.com/api/plants`
     fetch(url)
         .then(res => res.json())
         .then(data => {
+            allTreesContainer = data.plants
             // console.log(data)
             displayAllPlants(data.plants)
         })
-    }
+}
 
 
 const displayAllPlants = (plants) => {
@@ -36,6 +37,25 @@ const displayAllPlants = (plants) => {
         plantContainer.append(plantDiv)
     }
 }
+
+//all Tree button work as reset button
+document.addEventListener('DOMContentLoaded', function () {
+    loadPlants()
+
+    const allTreesBtn = document.getElementById("allTrees")
+    if (allTreesBtn) {
+        allTreesBtn.addEventListener("click", function (e) {
+            e.preventDefault()
+            removeActive()
+            if (allTreesContainer.length > 0) {
+                displayAllPlants(allTreesContainer)
+            } else {
+
+                loadPlants()
+            }
+        })
+    }
+})
 
 
 loadPlants()
