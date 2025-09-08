@@ -51,8 +51,13 @@ const displayCategories = (categories) => {
     categories.forEach(category => {
         const categoryBtn = document.createElement("button")
         categoryBtn.className =
-            "w-full text-left px-3 py-2 text-[1rem] font-normal text-[#1F2937] hover:bg-[#15803D] hover:text-white rounded-sm mb-2"
+            "w-full text-left px-3 py-2 text-[1rem] font-normal text-[#1F2937] hover:bg-[#15803D] hover:text-white rounded-sm mb-2 "
         categoryBtn.textContent = category.category_name
+        categoryBtn.addEventListener("click",() =>{
+            categoryPlantLoader(category.category_name)
+        }
+
+        )
 
         categoryContainer.append(categoryBtn)
     });
@@ -105,6 +110,20 @@ const displayDetails = (plant) => {
 
 
     document.getElementById("treeModal").showModal()
+}
+
+
+const categoryPlantLoader = (categoryName) => {
+    fetch(`https://openapi.programming-hero.com/api/plants`)
+    .then(res => res.json())
+    .then(data => 
+        {
+            const allPlants = data.plants
+            const categoryPlants = allPlants.filter(plant => plant.category === categoryName)
+            displayAllPlants(categoryPlants)
+
+        })
+
 }
 
 
