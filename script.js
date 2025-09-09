@@ -33,7 +33,7 @@ const displayAllPlants = (plants) => {
                             <a class="bg-[#DCFCE7] rounded-3xl w-22 text-center" href="">${plant.category}</a>
                             <h2>৳${plant.price}</h2>
                         </div>
-                        <button class="btn text-[16px] bg-[#15803D] text-[#fff] w-full rounded-full border-none">Add to
+                        <button onclick="addToCart('${plant.name}','${plant.price}')" class="btn text-[16px] bg-[#15803D] text-[#fff] w-full rounded-full border-none">Add to
                             Cart</button>
                     </div>`
 
@@ -46,7 +46,7 @@ const displayAllPlants = (plants) => {
 //all Tree button work as reset button
 document.addEventListener('DOMContentLoaded', () => {
     loadPlants()
-     loadCategories() 
+    loadCategories()
 
     document.getElementById("allTrees").addEventListener("click", function (e) {
         removeActive()
@@ -175,5 +175,27 @@ const manageSpinner = (status) => {
 
     }
 }
+
+//displaying add to card
+   const addToCart =(plantName,plantPrice) => {
+    const addToCardDiv = document.getElementById("addToCardCon")
+    const cartItem = document.createElement("div")
+    cartItem.className = "bg-[#F0FDF4] flex items-center justify-between p-4 rounded-lg shadow-sm "
+    cartItem.innerHTML = `   <div>
+                            <h2 class="text-sm font-semibold">${plantName}</h2>
+                            <p class="tex-[16px] font-normal text-[#8C8C8C]">৳${plantPrice} x 1</p>
+                        </div>
+                       <button onclick="removeFromCart(this)" class="text-[#8C8C8C] tex-[16px]"><i class="fa-solid fa-xmark"></i></button>`
+
+     addToCardDiv.appendChild(cartItem)                  
+
+   }
+
+   const removeFromCart = (button) => {
+    button.parentElement.remove()
+   }
+
+
+
 
 
