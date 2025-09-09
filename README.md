@@ -34,7 +34,7 @@ Key points: i) Makes code short and clean.
                 ii)You can also give default values.               
 #### 5) Explain template literals in ES6. How are they different from string concatenation?
 
-Template literals in ES6 are a new way to work with strings.They use backticks ( ` ` ) instead of quotes ("" or '').Concatenation uses + that make string harder to read.Template literals use backticks ` and ${ } that makes the code cleaner also supports to write multiline string.By using template literal we can  insert variables and expressions directly with ${ } .But in string contatenation we can't do it.
+Template literals in ES6 are a new way to work with strings.They use backticks (``) instead of quotes ("" or '').Concatenation uses + that make string harder to read.Template literals use backticks ` and ${ } that makes the code cleaner also supports to write multiline string.By using template literal we can  insert variables and expressions directly with ${ } .But in string contatenation we can't do it.
          Example, 
                 i)Template literals:
                 let poem = `I am Efty.

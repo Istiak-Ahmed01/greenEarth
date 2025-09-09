@@ -115,31 +115,37 @@ const loadTreeDetails = async (id) => {
     const res = await fetch(url)
     const details = await res.json()
     displayDetails(details.plants)
+
+
 }
+
+
+
+
 
 const displayDetails = (plant) => {
     const detailContainer = document.getElementById("details-container")
-    detailContainer.innerHTML = `
-        <div class="bg-white shadow-sm p-5 space-y-2 rounded-lg">
-            <div class="h-[187px]">
-                <img class="h-full w-full" src="${plant.image}" alt="">
-            </div>
-            <h2 class="text-[1rem] font-semibold">${plant.name}</h2>
-            <p>${plant.description}</p>
-            <div class="flex justify-between">
-                <a class="bg-[#DCFCE7] rounded-3xl w-22 text-center" href="">
-                    ${plant.category}
-                </a>
-                <h2>৳${plant.price}</h2>
-            </div>
-            <button class="btn bg-[#15803D] text-white w-full rounded-full border-none">
-                Add to Cart
-            </button>
-            <button onclick="document.getElementById('treeModal').close()" 
-                class="btn bg-red-500 text-white w-full rounded-full border-none mt-2">
-                Close
-            </button>
-        </div>`;
+    detailContainer.innerHTML = `<div class="bg-white shadow-sm p-5 space-y-4 rounded-lg">
+                                <h2 class="text-[1rem] font-semibold">${plant.name}</h2>
+
+                        <div class="w-full h-[250px]">
+
+                            <img class="h-full w-full" src="${plant.image}" alt="">
+                        </div>
+                        <div class="flex justify-between">
+                            <a class="bg-[#DCFCE7] rounded-3xl w-22 text-center" href="">
+                                ${plant.category}
+                            </a>
+                            <h2>৳${plant.price}</h2>
+                        </div>
+                        <p>${plant.description}</p>
+
+<div class="flex justify-end">
+    <button onclick="document.getElementById('treeModal').close()"
+        class="btn bg-[#fff90] text-black w-30 rounded-full border-none shadow-md">
+        Close
+    </button>
+</div>        `;
 
 
     document.getElementById("treeModal").showModal()
@@ -191,7 +197,7 @@ const addToCart = (plantName, plantPrice) => {
 
     //total calculation
     const totalPrice = document.getElementById("totalPrice")
-    const currentTotal = parseInt(totalPrice.innerText.replace('৳',""))
+    const currentTotal = parseInt(totalPrice.innerText.replace('৳', ""))
     const newTotal = currentTotal + parseInt(plantPrice)
     totalPrice.innerText = `৳${newTotal}`
 
@@ -199,11 +205,11 @@ const addToCart = (plantName, plantPrice) => {
 }
 
 
-const removeFromCart = (button,plantPrice) => {
+const removeFromCart = (button, plantPrice) => {
     button.parentElement.remove()
 
-        const totalPrice = document.getElementById("totalPrice")
-    const currentTotal = parseInt(totalPrice.innerText.replace('৳',""))
+    const totalPrice = document.getElementById("totalPrice")
+    const currentTotal = parseInt(totalPrice.innerText.replace('৳', ""))
     const newTotal = currentTotal - parseInt(plantPrice)
     totalPrice.innerText = `৳${newTotal}`
 

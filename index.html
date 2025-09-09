@@ -117,6 +117,25 @@
         <dialog id="treeModal" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
                 <div id="details-container" class=" space-y-5">
+                    <!-- <div class="bg-white shadow-sm p-5 space-y-2 rounded-lg">
+                        <div class="h-[187px]">
+                            <h2 class="text-[1rem] font-semibold">${plant.name}</h2>
+
+                            <img class="h-full w-full" src="${plant.image}" alt="">
+                        </div>
+                        <div class="flex justify-between">
+                            <a class="bg-[#DCFCE7] rounded-3xl w-22 text-center" href="">
+                                ${plant.category}
+                            </a>
+                            <h2>৳${plant.price}</h2>
+                        </div>
+                        <p>${plant.description}</p>
+
+
+                        <button onclick="document.getElementById('treeModal').close()"
+                            class="btn text-white w-10 rounded-full border-none mt-2">
+                            Close
+                        </button> -->
 
 
                 </div>
@@ -178,15 +197,25 @@
                     placeholder="Your Name">
                 <input class="bg-[#fff] w-full text-[16px] font-normal rounded-lg p-2 border-none" type="email"
                     placeholder="Your Email Address">
-                <select
-                    class="bg-[#fff] w-full text-[16px] font-normal rounded-lg p-2 border-none appearance-none cursor-pointer">
-                    <option value="" disabled selected>Number of Trees</option>
-                    <option value="1">1 Tree </option>
-                    <option value="5">5 Trees </option>
-                    <option value="10">10 Trees</option>
 
-                    <option value="custom">Custom Amount</option>
-                </select>
+                <div>
+                    <select
+                        class="bg-[#fff] w-full text-[16px] font-normal rounded-lg p-2 border-none appearance-none cursor-pointer flex justify-between">
+
+                        <option value="" disabled selected>Number of Trees</option>
+                        <option value="1">1 Tree </option>
+                        <option value="5">5 Trees </option>
+                        <option value="10">10 Trees</option>
+                        <option value="custom">Custom Amount</option>
+                    </select>
+
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <i class="fa-solid fa-chevron-down text-gray-500"></i>
+                    </div>
+
+
+                </div>
+
                 <button class="btn text-[16px] w-full  bg-[#FACC15] text-[#15803D] rounded-full border-none">Donate
                     Now</button>
 
