@@ -177,7 +177,7 @@ const manageSpinner = (status) => {
 }
 
 //displaying add to card
-   const addToCart =(plantName,plantPrice) => {
+const addToCart = (plantName, plantPrice) => {
     const addToCardDiv = document.getElementById("addToCardCon")
     const cartItem = document.createElement("div")
     cartItem.className = "bg-[#F0FDF4] flex items-center justify-between p-4 rounded-lg shadow-sm "
@@ -185,15 +185,30 @@ const manageSpinner = (status) => {
                             <h2 class="text-sm font-semibold">${plantName}</h2>
                             <p class="tex-[16px] font-normal text-[#8C8C8C]">৳${plantPrice} x 1</p>
                         </div>
-                       <button onclick="removeFromCart(this)" class="text-[#8C8C8C] tex-[16px]"><i class="fa-solid fa-xmark"></i></button>`
+                       <button onclick="removeFromCart(this,'${plantPrice}')" class="text-[#8C8C8C] tex-[16px]"><i class="fa-solid fa-xmark"></i></button>`
 
-     addToCardDiv.appendChild(cartItem)                  
+    addToCardDiv.appendChild(cartItem)
 
-   }
+    //total calculation
+    const totalPrice = document.getElementById("totalPrice")
+    const currentTotal = parseInt(totalPrice.innerText.replace('৳',""))
+    const newTotal = currentTotal + parseInt(plantPrice)
+    totalPrice.innerText = `৳${newTotal}`
 
-   const removeFromCart = (button) => {
+
+}
+
+
+const removeFromCart = (button,plantPrice) => {
     button.parentElement.remove()
-   }
+
+        const totalPrice = document.getElementById("totalPrice")
+    const currentTotal = parseInt(totalPrice.innerText.replace('৳',""))
+    const newTotal = currentTotal - parseInt(plantPrice)
+    totalPrice.innerText = `৳${newTotal}`
+
+
+}
 
 
 
